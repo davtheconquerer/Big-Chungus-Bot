@@ -74,7 +74,6 @@ async def purge(ctx, messages: discord.commands.Option(int, "number of messages 
 
 
 
-
 # ~~~ #
 # FUN #
 # ~~~ #
