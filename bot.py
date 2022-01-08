@@ -24,14 +24,13 @@ bot = discord.Bot(
 )
 
 
-
+# Start up event >>>
 
 @bot.event
 async def on_ready():
     print("big chungus is up and running")
 
-
-
+# replies if someone types big or chungus, vice versa >>>
 
 @bot.event
 async def on_message(message):
@@ -57,12 +56,16 @@ async def on_message(message):
 
 
 
-@bot.application_command(name = "uwu", description = "UwUwUwUwUwUwU")
-async def uwu(ctx):
-    await ctx.respond(content = "owo")
+# ~~~~~~~~~~ #
+# MODERATION #
+# ~~~~~~~~~~ #
 
-@bot.application_command(name = "purge", description = "delete messages in bulk")
-async def purge(ctx, messages: discord.commands.Option(int, "number of messages to delete", max_value=100, min_value=2)):
+# `purge command` deletes number of messages >>>
+
+@bot.application_command(name = "purge", description = "delete messages in bulk", default_permission = False)
+@discord.permissions.has_any_role(867087495391608843, 835190138363052119)
+
+async def purge(ctx, messages: discord.commands.Option(int, "number of messages to delete", max_value=100, min_value=1)):
     await ctx.defer(ephemeral=True)
 
     await ctx.channel.purge(limit=messages)
@@ -70,15 +73,27 @@ async def purge(ctx, messages: discord.commands.Option(int, "number of messages 
     await ctx.interaction.edit_original_message(content = f"You purged `{messages}` messages")
 
 
+
+
+# ~~~ #
+# FUN #
+# ~~~ #
+
+# `ping command` fun >>>
+
 @bot.application_command(name = "ping", description = "ping")
 async def ping(ctx):
     await ctx.respond(content = "pong")
 
+# `uwo command` which replies with owo >>>
+
+@bot.application_command(name = "uwu", description = "UwUwUwUwUwUwU")
+async def uwu(ctx):
+    await ctx.respond(content = "owo")
 
 
 
-
-
+# not important >>>
 
 token = os.getenv("TOKEN")
 bot.run(token)
