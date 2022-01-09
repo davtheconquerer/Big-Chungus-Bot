@@ -80,7 +80,7 @@ async def purge(ctx, messages: discord.commands.Option(int, "number of messages 
 
 async def kick(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
-    await ctx.member.send(f"You were kicked because: {reason}")
+    await ctx.member.respond(f"You were kicked because: {reason}")
 
 
 # `ban command` bans a user >>>
@@ -90,7 +90,7 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
-    await ctx.member.send(f"You were banned because: {reason}")
+    await ctx.member.respond(f"You were banned because: {reason}")
 
 
 
