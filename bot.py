@@ -14,7 +14,6 @@ bot = discord.Bot(
         guilds = True,
         messages = True
     ),
-    debug_guilds = [867087433202663444],
 
     status = discord.Status.idle,
     activity = discord.Activity(
@@ -62,7 +61,7 @@ async def on_message(message):
 
 # `purge command` deletes number of messages >>>
 
-@bot.application_command(name = "purge", description = "delete messages in bulk", default_permission = False)
+@bot.application_command(name = "purge", description = "delete messages in bulk", guilds_ids=[867087433202663444], default_permission = False)
 @discord.permissions.has_any_role(867087495391608843, 835190138363052119)
 
 async def purge(ctx, messages: discord.commands.Option(int, "number of messages to delete", max_value=100, min_value=1)):
@@ -71,6 +70,30 @@ async def purge(ctx, messages: discord.commands.Option(int, "number of messages 
     await ctx.channel.purge(limit=messages)
 
     await ctx.interaction.edit_original_message(content = f"You purged `{messages}` messages")
+
+
+# `kick command` kicks a user >>>
+
+@bot.application_command(name = "kick", description = "kicks a user", guilds_ids=[867087433202663444], default_permission = False)
+@discord.permissions.has_any_role(867087495391608843, 835190138363052119) # <<< role ids
+
+async def kick(ctx, member: discord.Member, *, reason=None):
+    await member.kick(reason=reason)
+    await ctx.member.send(f"You were kicked because: {reason}")
+
+
+# `ban command` bans a user >>>
+
+@bot.application_command(name = "ban", description = "bans a user", guilds_ids=[867087433202663444], default_permission = False)
+@discord.permissions.has_any_role(867087495391608843, 835190138363052119) # <<< role ids
+
+async def ban(ctx, member: discord.Member, *, reason=None):
+    await member.ban(reason=reason)
+    await ctx.member.send(f"You were banned because: {reason}")
+
+
+
+
 
 
 
@@ -83,6 +106,7 @@ async def purge(ctx, messages: discord.commands.Option(int, "number of messages 
 @bot.application_command(name = "ping", description = "ping")
 async def ping(ctx):
     await ctx.respond(content = "pong")
+
 
 # `uwo command` which replies with owo >>>
 
