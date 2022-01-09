@@ -77,7 +77,7 @@ async def purge(ctx, messages: discord.commands.Option(int, "number of messages 
 @bot.application_command(name = "kick", description = "kicks a user", guild_ids = [867087433202663444], default_permission = False)
 @discord.permissions.has_any_role(867087495391608843, 835190138363052119) # <<< role ids
 
-async def kick(ctx, member: discord.Member, *, reason=None):
+async def kick(ctx, member: discord.commands.Option(discord.Member, "the member you want to kick"), reason=None):
     await member.kick(reason=reason)
     await ctx.member.respond(f"You were kicked because: {reason}")
 
@@ -87,7 +87,7 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 @bot.application_command(name = "ban", description = "bans a user", guild_ids = [867087433202663444], default_permission = False)
 @discord.permissions.has_any_role(867087495391608843, 835190138363052119) # <<< role ids
 
-async def ban(ctx, member: discord.Member, *, reason=None):
+async def ban(ctx, member: discord.commands.Option(discord.Member, "the member you want to ban"), reason=None):
     await member.ban(reason=reason)
     await ctx.member.respond(f"You were banned because: {reason}")
 
