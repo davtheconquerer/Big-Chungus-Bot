@@ -62,8 +62,8 @@ async def on_message(message):
 @bot.application_command(name = "help", description = "provides list of available commands", guild_ids = [867087433202663444, 835190138363052113])
 
 async def help(ctx):
-    embed = discord.Embed(colour=discord.Colour.from_rgb(255, 136, 0), title=f"This is the Help Menu for {bot.user.username}#{bot.user.discriminator}!", description="*nothing here...*")
-    embed.set_author("ShadowDev#0001", url="https://github.com/ItsShadowDev/Big-Chungus-Bot", icon_url="https://cdn.discordapp.com/avatars/695230133229060127/b21ac30b4c841d1e2b8bb19a37b6cb5b.png?size=256")
+    embed = discord.Embed(colour=discord.Colour.from_rgb(255, 136, 0), title=f"This is the Help Menu for {bot.user}#{bot.user.discriminator}!", description="*nothing here...*")
+    embed.set_author("ShadowDev#0001", url="https://github.com/ItsShadowDev/Big-Chungus-Bot", icon_url="https://cdn.discordapp.com/avatars/695230133229060127/b21ac30b4c841d1e2b8bb19a37b6cb5b.png")
     embed.set_image("https://c.tenor.com/7Ypq9_9najcAAAAC/thumbs-up-double-thumbs-up.gif")
 
 
